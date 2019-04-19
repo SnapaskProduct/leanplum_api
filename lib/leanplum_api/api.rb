@@ -151,6 +151,10 @@ module LeanplumApi
         user_attr_hash[:events] = user_hash.delete(:events)
         user_attr_hash[:events].each { |k, v| user_attr_hash[:events][k] = fix_seconds_since_epoch(v) }
       end
+      
+      if user_hash.key?(:userAttributeValuesToAdd)
+        user_attr_hash[:userAttributeValuesToAdd] = user_hash.delete(:userAttributeValuesToAdd)
+      end
 
       user_attr_hash[:userAttributes] = fix_iso8601(user_hash)
       user_attr_hash
